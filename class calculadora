@@ -1,0 +1,23 @@
+/* aqui ustedes lo modifican para ingresar los valores de los modulos y lo de negativo, tengo hasta ahi*/
+#include<iostream>
+#include "calculadora.h"
+using namespace std;
+
+int Calculadora::suma(){
+    if (respuesta >=0){
+      return (a+b)%mod;
+    else {
+      respuesta=respuesta+mod;
+      return respuesta;
+}
+int Calculadora::resta(){
+    return (a-b)%mod;
+}
+int Calculadora::multiplicar(){
+    return (a*b)%mod;
+}
+
+/*int main(){
+Calculadora calculo;
+calculo.numero.primero=;*/
+
