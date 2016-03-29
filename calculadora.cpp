@@ -40,15 +40,8 @@ while(salida != 0){
         respuesta=cal.resta(a,b,modulo);}
     if(opcion==3){
         respuesta=cal.multiplicar(a,b,modulo);}
-	if (respuesta >=0){
-		cout<<endl<<"La respuesta es :"<<respuesta<<endl;
-        }
-	else {
-        respuesta=respuesta+modulo;
-		cout<<endl<<"La respuesta es :"<<respuesta<<endl;
-	}
-
-    cout<<endl<<"Que desea hacer? 1: seguir       0:salir"<<endl;
+cout<<endl<<"La respuesta es :"<<respuesta<<endl;
+cout<<endl<<"Que desea hacer? 1: seguir       0:salir"<<endl;
 	cin>> salida;
 	}
 }
