@@ -1,18 +1,18 @@
 #include<iostream>
 using namespace std;
 
-class Calculadora{
-private:
-      numero primero, segundo, modulo;
+class Calculadora
+{
+public:
+int suma(int a, int b,int mod){
+    return (a+b)%mod;
+    }
+int resta(int a, int b,int mod){
 
-public:      
-      int suma();
-      int resta();
-      int multiplicar();
-      
-      Calculadora(int a, int b, int mod){
-      
-                      numero.setprimero(a);
-                      numero.setsegundo(b);
-                      numero.setmodulo(mod);
+    return(a-b)%mod;
+    }
+int multiplicar(int a, int b, int mod){
+    return (a*b)%mod;
+    }
+
 };
