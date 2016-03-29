@@ -37,7 +37,7 @@ int encontrarInverso(int numero, int modu){
     }
 }
 int main(){
-    //la funcion devuelve la clave publica, si es que la clave privada no tiene inverso vuelve a perdir otra clave
+    //la funcion devuelve el inverso, si esque no tiene inverso devuelve 0
     int numero, modulo;
     cin>>numero;
     cout<<""<<endl;
