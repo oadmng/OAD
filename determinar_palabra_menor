@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+bool det_menor(char *a , char* b){
+     for( ;*a !='\0' && *b != '\0' ; a++,b++){
+         if(*a > *b)
+                   return true;
+     }
+     if (true){
+            return *b;
+
+     }
+}
+
+int main(){
+    char pal1[50],pal2[50];
+    cout<<"introduzca 2 palabras: " <<endl;
+    cin>>pal1;
+    cin>>pal2;
+    cout<<"la palabra menor es: "<<endl;
+    if (det_menor(pal1, pal2)==1){
+        cout<<pal2;
+        }
+    else{
+        cout<<pal1;
+    }
+}
