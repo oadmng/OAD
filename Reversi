@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+void mostrar(char pos[8][8]){
+	for(int a = 0; a<= 5; a++)
+	{
+		for(int b =0; b <= 6; b++) cout<<char(218)<<char(196)<<char(191)<<" ";
+		cout<<endl;
+		for(int b =0; b <= 6; b++) cout<<char(179)<<pos[a][b]<<char(179)<<" ";
+		cout<<endl;
+		for(int b =0; b <= 6; b++) cout<<char(192)<<char(196)<<char(217)<<" ";
+		cout<<endl;
+	}}
+
+void menu(){
+	cout<<"* Iniciar Juego (1)"  << endl ;
+	cout<<"* Instrucciones (3)" << endl ;
+    cout<<"* Salir         (0)" << endl ;
+}
+
+void titulo(){
+cout<<"___REVERSI___"<<endl;
+}
+
+void inicio_juego(){
+ char pos[8][8];
+        for(int a =0; a<= 8; a++){
+		for(int b = 0; b<=8; b++){
+			pos[a][b] = ' ';
+		}}
+    mostrar(pos);
+}
+
+
+int main(){
+    titulo();
+    menu();
+    inicio_juego();
+}
