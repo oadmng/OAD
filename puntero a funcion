@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+bool ascendente(int a, int b){
+     if (a>b){
+              return true;
+            }
+     else{
+          return false;
+          }
+}
+          
+bool descendente(int a, int b){
+     if (a<b){
+            return true;
+            }
+     else{
+         return false;
+         }
+}
+
+void Swap(int (*p)(int,int), int *(i,j)){
+     if (p(i,j) == true){
+       int cambio(i,j);
+     }
+}
+
+void bub
