@@ -24,10 +24,10 @@ void instru(){
     Sleep(2000);
     main();
 }
-bool lleno(int matriz[10][10]){
+bool lleno(int matriz[8][8]){
     bool vacio=false;
-    for(int i=0;i<10;i++){
-        for(int j=0;j<10;j++){
+    for(int i=0;i<8;i++){
+        for(int j=0;j<8;j++){
             if(*(*(matriz+j)+i)==0){
                 vacio=true;
             }
@@ -35,21 +35,21 @@ bool lleno(int matriz[10][10]){
     }
     return vacio;
 }
-void imprimir(int matriz[10][10]){
-    for(int i=0;i<10;i++){
+void imprimir(int matriz[8][8]){
+    for(int i=0;i<8;i++){
             cout<<"   ";
-        for(int j=0;j<10;j++){
+        for(int j=0;j<8;j++){
             cout<<*(*(matriz+j)+i)<<" ";
 
         }
         cout<<endl;
     }
 }
-void conteo(int matriz[10][10]){
+void conteo(int matriz[8][8]){
     int ficha1=0;
     int ficha2=0;
-    for(int i=0;i<10;i++){
-        for(int j=0;j<10;j++){
+    for(int i=0;i<8;i++){
+        for(int j=0;j<8;j++){
             if(*(*(matriz+j)+i)==1){
                 ficha1++;
             }
@@ -82,9 +82,7 @@ int ingresarcor(){
         return ingresarcor();
     }
 }
-void cambiarficha(int corx,int cory,int ficha,int matriz[10][10]){
-    int matr1[8]={1,1,0,-1,-1,-1,0,1};
-    int matr2[8]={0,1,1,1,0,-1,-1,-1};
+void cambiarficha(int corx,int cory,int ficha,int matriz[8][8],int matr1[8],int matr2[8]){
     matriz[corx][cory]=ficha;
     for(int i=0;i<8;i++){
         if(corx+matr1[i]+matr1[i]>=8 || corx+matr1[i]+matr1[i]<0 || cory+matr2[i]+matr2[i]>=8 || cory+matr2[i]+matr2[i]<0){
@@ -97,23 +95,25 @@ void cambiarficha(int corx,int cory,int ficha,int matriz[10][10]){
         }
     }
 }
-void ocupado(int *corx,int *cory,int matriz[10][10]){
+void ocupado(int *corx,int *cory,int matriz[8][8]){
     cout<<"El espacio esta ocupado"<<endl;
     Sleep(1000);
     cout<<"Coordenada x: "<<endl;
-    *corx=ingresarcor()+1;
+    *corx=ingresarcor();
     cout<<endl;
     cout<<"Coordenada y: "<<endl;
-    *cory=ingresarcor()+1;
+    *cory=ingresarcor();
     if(matriz[*corx][*cory]!=0){
         ocupado(corx,cory,matriz);
     }
 }
-void juego(int matriz[10][10]){
+void juego(int matriz[8][8]){
     int turno=0;
     int ficha=1;
     int corx=0;
     int cory=0;
+    int matr1[8]={1,1,0,-1,-1,-1,0,1};
+    int matr2[8]={0,1,1,1,0,-1,-1,-1};
     while(lleno(matriz)==true){
         system("cls");
         turno++;
@@ -132,29 +132,27 @@ void juego(int matriz[10][10]){
         }
         cout<<"Ingrese el lugar de la ficha que desea colocar"<<endl;;
         cout<<"Coordenada x: "<<endl;
-        corx=ingresarcor()+1;
+        corx=ingresarcor();
         cout<<endl;
         cout<<"Coordenada y: "<<endl;
-        cory=ingresarcor()+1;
+        cory=ingresarcor();
         if(matriz[corx][cory]!=0){
             ocupado(&corx,&cory,matriz);
         }
-        cambiarficha(corx,cory,ficha,matriz);
+        cambiarficha(corx,cory,ficha,matriz,matr1,matr2);
     }
     conteo(matriz);
     Sleep(3000);
 }
 void inicio(){
-    int matriz[10][10]={{9,9,9,9,3,4,5,6,7,9},
-                        {9,0,0,0,0,0,0,0,0,9},
-                        {9,0,0,0,0,0,0,0,0,9},
-                        {9,0,0,0,0,0,0,0,0,9},
-                        {3,0,0,0,1,2,0,0,0,3},
-                        {4,0,0,0,2,1,0,0,0,4},
-                        {5,0,0,0,0,0,0,0,0,5},
-                        {6,0,0,0,0,0,0,0,0,6},
-                        {7,0,0,0,0,0,0,0,0,7},
-                        {8,3,3,3,3,3,3,3,3,9}
+    int matriz[8][8]={{0,0,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0},
+                        {0,0,0,1,2,0,0,0},
+                        {0,0,0,2,1,0,0,0},
+                        {0,0,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0}
     };
     juego(matriz);
 }
