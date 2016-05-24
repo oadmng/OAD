@@ -1,22 +1,65 @@
-#include<iostream>
-#include <stdio.h>
+#include <iostream>
 using namespace std;
 
-void BubbleS(int *A, int n){
-     int i,j,temp;
-     for (i=0;i<n;i++)
-         for(j=0;i<n-1;j++){
-                            if (A[j]>A[j+1]){ 
-                               temp = A[j];
-                               A[j] = A[j+1];
-                               A[j+1] = temp;
-                               }
-            }
-}            
-int main (){
-    int i,A[] ={3,2,1,5,6,4};
-    BubbleS(A,6);
-    for(i=0;i<6;i++){
-                     cout<<A[i];
-                     }
+void swap( int * e1, int *  e2 )
+{
+   int temp = *e1;
+   *e1 = *e2;
+   *e2 = temp;
 }
+
+void print(int*array,int size)
+{
+	for(int i=0;i<size;i++){
+		cout<<" . "<<array[i];
+	}
+	cout<<endl;
+}
+
+
+
+bool ascendente(int a,int b){
+	//cout<<"por criterio ascendente: \n";
+	if(a>b){return true;}
+	else{return false;}
+}
+bool descendente(int a,int b){
+	//cout<<"por criterio descendente: \n";
+	if(a<b){return true;}
+	else{return false;}
+}
+bool comparacion(bool (*p)(int,int), int info, int aux){
+	if(p(info,aux)==true){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+void bubble(int *a,int siz)
+{
+	bool cambio=true;
+	int reducir=0;
+	int cont1;
+	while(cambio){
+		cambio=false;
+		for(cont1=0;cont1<(siz-1)-reducir;cont1++){
+			if (comparacion(ascendente, a[ cont1 ],a[ cont1+1 ])==true ){
+				swap( &a[ cont1 ], &a[ cont1+1 ]);
+				cambio=true;
+			}
+
+		}
+		reducir++;
+	}
+}
+int main()
+{
+	int a[]={1,32,3,-4,2,1,115,12,0};
+	int siz=9;
+	print(a,siz);
+	bubble(a,siz);
+	print(a,siz);
+	return 0;
+}
+
