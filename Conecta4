@@ -1,0 +1,142 @@
+#include<iostream>
+#include <stdlib.h>
+using namespace std;
+
+void mostrar();
+bool check(int a, int b);
+int poner(int b, char jugador);
+char pos[6][7];
+
+
+
+int main(){
+    for(int a =0;a <= 5; a++){
+        for(int b = 0; b<=6; b++)
+            pos[a][b] = ' ';
+}
+
+    mostrar();
+    int hold;//columna donde va ficha
+    int hold2 = 0;
+    int poschar = 0;
+    bool gano = false;
+    char jugador = 15;
+
+    while(!gano){
+        if(hold2 != -1){
+            if(jugador == 15){
+                cout<<"jugador 1, ubica la ficha?";
+                jugador = 254;
+            }
+            else{
+                cout<<"jugador 2, ubica la ficha?";
+                jugador = 15;
+            }
+        }
+
+        while(true){
+            if(poschar == 42) break;
+                cin>>hold;
+                    hold--;
+            if(hold <=6 && hold>= 0) break;
+            else cout<< "\n porfavor ingrese un valor entre 1 y 7 :";
+
+            if (cin.fail())
+            {
+                cin.clear();
+                char c;
+                cin>>c;
+                }
+        }
+
+        if(poschar == 42) break;
+        hold2 = poner(hold,jugador);
+        if(hold2 == -1) cout<<"Coluna llena\n Ponga un numero entre 1 y 7:";
+        else{
+
+            gano = check(hold2,hold);
+            poschar ++;
+            system("cls");
+            mostrar();
+            }
+    }
+
+    system("cls");
+
+    if(poschar == 42){
+        cout<<"Empate!\n";
+        system("pause");
+        return 0;
+    }
+
+    if(jugador == 15)
+        cout<<"Gano el jugador 2 \n";
+    else cout<<"Gano el jugador 1 \n";
+    system("pause");
+    return 0;
+
+}
+
+void mostrar(){
+
+    cout<<" 1   2   3   4   5   6   7\n";
+    for(int a = 0; a<= 5; a++)
+    {
+        for(int b =0; b <= 6; b++) cout<<char(218)<<char(196)<<char(191)<<" ";
+        cout<<'\n';
+        for(int b =0; b <= 6; b++) cout<<char(179)<<pos[a][b]<<char(179)<<" ";
+        cout<<'\n';
+        for(int b =0; b <= 6; b++) cout<<char(192)<<char(196)<<char(217)<<" ";
+        cout<<'\n';
+    }
+}
+
+bool check(int a, int b){
+    int vertical = 1;
+    int horizontal = 1;
+    int diagonal1 = 1;
+    int diagonal2 = 1;
+    char jugador = pos[a][b];
+    int i;//vertical
+    int ii;//horizontal
+
+    //check for vertical(|)
+    for(i = a +1;pos[i][b] == jugador && i <= 5;i++,vertical++);//abajo
+    for(i = a -1;pos[i][b] == jugador && i >= 0;i--,vertical++);//arriba
+    if(vertical >= 4)return true;
+    //check for horizontal(-)
+    for(ii = b -1;pos[a][ii] == jugador && ii >= 0;ii--,horizontal++);//der
+    for(ii = b +1;pos[a][ii] == jugador && ii <= 6;ii++,horizontal++);//izq
+    if(horizontal >= 4) return true;
+    //check for diagonal 1 (\)
+    for(i = a -1, ii= b -1;pos[i][ii] == jugador && i>=0 && ii >=0; diagonal1 ++, i --, ii --);//arr iz
+    for(i = a +1, ii = b+1;pos[i][ii] == jugador && i<=5 && ii <=6;diagonal1 ++, i ++, ii ++);//ab der
+    if(diagonal1 >= 4) return true;
+    //check for diagonal 2(/)
+    for(i = a -1, ii= b +1;pos[i][ii] == jugador && i>=0 && ii <= 6; diagonal2 ++, i --, ii ++);//arr der
+    for(i = a +1, ii= b -1;pos[i][ii] == jugador && i<=5 && ii >=0; diagonal2 ++, i ++, ii --);//ab izq
+    if(diagonal2 >= 4) return true;
+
+    return false;
+}
+
+int poner(int b, char jugador){
+    if(b >=0 && b<= 6)
+    {
+        if(pos[0][b] == ' '){
+            int i;
+            for(i = 0;pos[i][b] == ' ';i++)
+                if(i == 5){pos[i][b] = jugador;
+            return i;}
+            i--;
+            pos[i][b] =jugador;
+            return i;
+        }
+        else{
+            return -1;
+        }
+    }
+    else{
+        return -1;
+    }
+}
